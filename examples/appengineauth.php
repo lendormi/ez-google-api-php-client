@@ -21,7 +21,7 @@ include_once "templates/base.php";
   Make an API request authenticated via the 
   AppIdentity service on AppEngine.
  ************************************************/
-require_once realpath(dirname(__FILE__) . '/../autoload.php');
+
 
 echo pageHeader("AppIdentity Account Access");
 
