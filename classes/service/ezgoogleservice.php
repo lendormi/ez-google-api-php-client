@@ -39,5 +39,6 @@ abstract class eZGoogleService
 
     public function getOthersParameters()
     {
+        return array();
     }
 }

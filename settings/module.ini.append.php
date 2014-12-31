@@ -5,6 +5,7 @@ ExtensionRepositories[]=ezgoogleapi
 
 ModuleList[]=trends
 ModuleList[]=googleanalytics
+ModuleList[]=googlepagespeed
 
 */
 ?>
