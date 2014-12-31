@@ -4,6 +4,7 @@
 ExtensionRepositories[]=googleapi
 
 ModuleList[]=trends
+ModuleList[]=googleanalytics
 
 */
 ?>
