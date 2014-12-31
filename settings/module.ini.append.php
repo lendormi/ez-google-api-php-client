@@ -1,7 +1,7 @@
 <?php /* #?ini charset="utf-8"?
 
 [ModuleSettings]
-ExtensionRepositories[]=googleapi
+ExtensionRepositories[]=ezgoogleapi
 
 ModuleList[]=trends
 ModuleList[]=googleanalytics

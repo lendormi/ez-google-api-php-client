@@ -22,7 +22,7 @@ $googleapi = new eZGoogleApi(
 
 // create service and get data
 $service = eZGoogleAnalytics::getService($googleapi->client);
-$service->setScope($googleapi->scopes);
+$service->setRessource('reportingcorega');
 $service->setProfileID($profileID);
 $service->setPeriod("2014-12-22", "2014-12-28");
 $service->setPeriod("2014-12-22", "2014-12-28");
