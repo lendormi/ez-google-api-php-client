@@ -6,6 +6,7 @@
  */
 use eZGoogleApi\Kernel\eZGoogleApi;
 use eZGoogleApi\ServiceGoogle\eZGoogleAnalytics;
+use eZGoogleApi\Common\CoreReporting;
 
 $http               = \eZHTTPTool::instance();
 $profileID          = $Params['profile_id'];
@@ -25,11 +26,7 @@ $service = eZGoogleAnalytics::getService($googleapi->client);
 $service->setRessource('reportingcorega');
 $service->setProfileID($profileID);
 $service->setPeriod("2014-12-22", "2014-12-28");
-$service->setPeriod("2014-12-22", "2014-12-28");
-$service->setMetrics('ga:pageviews');
-$service->setParameter('sort', '-ga:pageviews');
-$service->setParameter('dimensions', 'ga:pagePath');
-$service->setParameter('max-results', '6');
-$result = $service->getResults();
+$result = CoreReporting::topContent($service);
+
 echo json_encode(array( 'result' => $result ));
 \eZExecution::cleanExit();
