@@ -9,14 +9,10 @@ use eZGoogleApi\ServiceGoogle\eZGooglePageSpeed;
 
 $http = \eZHTTPTool::instance();
 $googleApiIni = \eZINI::instance('googleapi.ini');
-$googleAnalyticsIni = \eZINI::instance('googleanalytics.ini');
 
 $googleapi = new eZGoogleApi(
-    'oauth2',
-    array(
-        'application_name' => $googleAnalyticsIni->variable('GoogleAnalyticsSettings', 'ApplicationName'),
-        'scopes' => \Google_Service_Analytics::ANALYTICS_READONLY
-    )
+    'default',
+    array()
 );
 
 // create service and get data

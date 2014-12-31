@@ -24,6 +24,7 @@ class eZGoogleApi
                 $this->client = static::accessUserService($params);
                 break;
             default:
+                $this->client = new \Google_Client();
                 break;
         }
         if (isset($params['scopes']) && $params['scopes']) {
