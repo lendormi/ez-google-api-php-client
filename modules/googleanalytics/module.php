@@ -9,5 +9,10 @@ $Module = array( "name" => "googleanalytics" );
 
 $ViewList = array();
 $ViewList["example"] = array(
-    "script" => "example.php"
+    "script" => "example.php",
+    'unordered_params'  => array( 'profile_id' => 'profile_id')
+);
+$ViewList["example_realtime"] = array(
+    "script" => "example_realtime.php",
+    'unordered_params'  => array( 'profile_id' => 'profile_id')
 );
