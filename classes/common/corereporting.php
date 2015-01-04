@@ -167,7 +167,7 @@ class CoreReporting
      */
     public static function topContent(eZGoogleAnalytics $service)
     {
-        $service->setMetrics('ga:pageviews,ga:uniquePageviews,ga:timeOnPage,ga:bounces,ga:entrances,ga:exits');
+        $service->setMetrics('ga:pageviews,ga:uniquePageviews,ga:avgTimeOnPage,ga:bounces,ga:entrances,ga:exits');
         $service->setParameter('dimensions', 'ga:pagePath');
         $service->setParameter('sort', '-ga:pageviews');
         return $service->getResults();
