@@ -59,6 +59,15 @@ class eZGoogleAnalytics extends eZGoogleService implements eZGoogleServiceInterf
     }
 
     /**
+     * return the profile view ID in the form ga:xxxxx
+     * @date   2015-01-03T18:32:19+0100
+     */
+    public function getProfileID()
+    {
+        return $this->parameters['profile_id'];
+    }
+
+    /**
      * @param string $startDate Start date for fetching Analytics data. Requests can
      * specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g.,
      * today, yesterday, or 7daysAgo). The default value is 7daysAgo.
