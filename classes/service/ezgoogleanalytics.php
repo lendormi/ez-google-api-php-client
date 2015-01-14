@@ -134,6 +134,9 @@ class eZGoogleAnalytics extends eZGoogleService implements eZGoogleServiceInterf
         if (isset($this->parameters['start-index'])) {
             $othersParams['start-index'] = $this->parameters['start-index'];
         }
+        if (isset($this->parameters['filters'])) {
+            $othersParams['filters'] = $this->parameters['filters'];
+        }
         return $othersParams;
     }
 
