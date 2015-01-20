@@ -980,8 +980,9 @@ class Google_Service_Genomics_Readgroupsets_Resource extends Google_Service_Reso
    *
    * Note that currently there may be some differences between exported BAM files
    * and the original BAM file at the time of import. In particular, comments in
-   * the input file header will not be preserved, and some custom tags will be
-   * converted to strings. (readgroupsets.export)
+   * the input file header will not be preserved, some custom tags will be
+   * converted to strings, and original reference sequence order is not
+   * necessarily preserved. (readgroupsets.export)
    *
    * @param Google_ExportReadGroupSetsRequest $postBody
    * @param array $optParams Optional parameters.
@@ -1540,7 +1541,7 @@ class Google_Service_Genomics_Variantsets_Resource extends Google_Service_Resour
 
 class Google_Service_Genomics_AlignReadGroupSetsRequest extends Google_Collection
 {
-  protected $collection_key = 'readGroupSetIds';
+  protected $collection_key = 'bamSourceUris';
   protected $internal_gapi_mappings = array(
   );
   public $bamSourceUris;
@@ -1549,7 +1550,7 @@ class Google_Service_Genomics_AlignReadGroupSetsRequest extends Google_Collectio
   protected $interleavedFastqSourceDataType = '';
   protected $pairedFastqSourceType = 'Google_Service_Genomics_PairedFastqSource';
   protected $pairedFastqSourceDataType = '';
-  public $readGroupSetIds;
+  public $readGroupSetId;
 
 
   public function setBamSourceUris($bamSourceUris)
@@ -1584,13 +1585,13 @@ class Google_Service_Genomics_AlignReadGroupSetsRequest extends Google_Collectio
   {
     return $this->pairedFastqSource;
   }
-  public function setReadGroupSetIds($readGroupSetIds)
+  public function setReadGroupSetId($readGroupSetId)
   {
-    $this->readGroupSetIds = $readGroupSetIds;
+    $this->readGroupSetId = $readGroupSetId;
   }
-  public function getReadGroupSetIds()
+  public function getReadGroupSetId()
   {
-    return $this->readGroupSetIds;
+    return $this->readGroupSetId;
   }
 }
 
@@ -1617,7 +1618,7 @@ class Google_Service_Genomics_CallReadGroupSetsRequest extends Google_Collection
   protected $internal_gapi_mappings = array(
   );
   public $datasetId;
-  public $readGroupSetIds;
+  public $readGroupSetId;
   public $sourceUris;
 
 
@@ -1629,13 +1630,13 @@ class Google_Service_Genomics_CallReadGroupSetsRequest extends Google_Collection
   {
     return $this->datasetId;
   }
-  public function setReadGroupSetIds($readGroupSetIds)
+  public function setReadGroupSetId($readGroupSetId)
   {
-    $this->readGroupSetIds = $readGroupSetIds;
+    $this->readGroupSetId = $readGroupSetId;
   }
-  public function getReadGroupSetIds()
+  public function getReadGroupSetId()
   {
-    return $this->readGroupSetIds;
+    return $this->readGroupSetId;
   }
   public function setSourceUris($sourceUris)
   {
@@ -3144,6 +3145,7 @@ class Google_Service_Genomics_ReadGroupSet extends Google_Collection
   public $datasetId;
   public $filename;
   public $id;
+  public $info;
   public $name;
   protected $readGroupsType = 'Google_Service_Genomics_ReadGroup';
   protected $readGroupsDataType = 'array';
@@ -3174,6 +3176,14 @@ class Google_Service_Genomics_ReadGroupSet extends Google_Collection
   {
     return $this->id;
   }
+  public function setInfo($info)
+  {
+    $this->info = $info;
+  }
+  public function getInfo()
+  {
+    return $this->info;
+  }
   public function setName($name)
   {
     $this->name = $name;
@@ -3198,6 +3208,10 @@ class Google_Service_Genomics_ReadGroupSet extends Google_Collection
   {
     return $this->referenceSetId;
   }
+}
+
+class Google_Service_Genomics_ReadGroupSetInfo extends Google_Model
+{
 }
 
 class Google_Service_Genomics_ReadInfo extends Google_Model
