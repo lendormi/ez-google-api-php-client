@@ -17,7 +17,6 @@
 include_once "templates/base.php";
 session_start();
 
-require_once realpath(dirname(__FILE__) . '/../src/Google/autoload.php');
 
 /************************************************
   ATTENTION: Fill in these values! Make sure

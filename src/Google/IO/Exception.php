@@ -15,9 +15,7 @@
  * limitations under the License.
  */
 
-if (!class_exists('Google_Client')) {
-  require_once dirname(__FILE__) . '/../autoload.php';
-}
+
 
 class Google_IO_Exception extends Google_Exception implements Google_Task_Retryable
 {

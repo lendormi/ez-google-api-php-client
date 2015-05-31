@@ -15,9 +15,7 @@
  * limitations under the License.
  */
 
-if (!class_exists('Google_Client')) {
-  require_once dirname(__FILE__) . '/../autoload.php';
-}
+
 
 /**
  * A blank storage class, for cases where caching is not

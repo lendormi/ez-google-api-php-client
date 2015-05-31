@@ -19,9 +19,7 @@
  * Abstract IO base class
  */
 
-if (!class_exists('Google_Client')) {
-  require_once dirname(__FILE__) . '/../autoload.php';
-}
+
 
 abstract class Google_IO_Abstract
 {

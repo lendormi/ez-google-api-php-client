@@ -438,6 +438,15 @@ class Google_Config
   }
 
   /**
+   * Set the base path for Google_Config
+   * It's important for the datas which are public
+   */
+  public function setBasePath($name)
+  {
+    $this->configuration['base_path'] = $name;
+  }
+
+  /**
    * Set the auth configuration for the current auth class.
    * @param $key - the key to set
    * @param $value - the parameter value
