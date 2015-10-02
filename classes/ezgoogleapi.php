@@ -42,7 +42,14 @@ class eZGoogleApi
 
         $clientID          = $googleApiIni->variable('GoogleAPISettings', 'OAuthServiceClientID');
         $emailAddress      = $googleApiIni->variable('GoogleAPISettings', 'OAuthServiceEmailAddress');
-        $keyFile           = $googleApiIni->variable('GoogleAPISettings', 'OAuthServiceP12Location');
+        if ($googleApiIni->hasVariable('GoogleAPISettings', 'OAuthServiceP12Location') && $googleApiIni->variable('GoogleAPISettings', 'OAuthServiceP12Location')) {
+            $keyFile           = $googleApiIni->variable('GoogleAPISettings', 'OAuthServiceP12Location');
+        } elseif($googleApiIni->hasVariable('GoogleAPISettings', 'OAuthServiceJSONLocation') && $googleApiIni->variable('GoogleAPISettings', 'OAuthServiceJSONLocation')) {
+            $keyFile           = $googleApiIni->variable('GoogleAPISettings', 'OAuthServiceJSONLocation');
+        }
+        if(!isset($keyFile)) {
+            return false;
+        }
         $client            = new \Google_Client();
         $applicationName   = !empty($params['application_name']) ? $params['application_name'] : "Service Google Ezpublish";
         $scopes            = !empty($params['scopes']) ? $params['scopes'] : "";
