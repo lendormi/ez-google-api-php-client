@@ -14,8 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+include_once __DIR__ . '/../vendor/autoload.php';
 include_once "templates/base.php";
-echo pageHeader("Simple API Access");
 
 /************************************************
   Make a simple API request using a key. In this
@@ -26,6 +27,7 @@ echo pageHeader("Simple API Access");
   anonymous quota (which is limited per IP).
  ************************************************/
 
+echo pageHeader("Simple API Access");
 
 /************************************************
   We create the client and set the simple API
@@ -35,9 +37,9 @@ echo pageHeader("Simple API Access");
  ************************************************/
 $client = new Google_Client();
 $client->setApplicationName("Client_Library_Examples");
-$apiKey = "<YOUR_API_KEY>"; // Change this line.
-// Warn if the API key isn't changed.
-if (strpos($apiKey, "<") !== false) {
+
+// Warn if the API key isn't set.
+if (!$apiKey = getApiKey()) {
   echo missingApiKeyWarning();
   exit;
 }

@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/google/google-api-php-client.svg)](https://travis-ci.org/google/google-api-php-client)
+[![Build Status](https://travis-ci.org/google/google-api-php-client.svg)](https://travis-ci.org/google/google-api-php-client.svg?branch=master)
 
 # Google APIs Client Library for PHP and eZPublish 4.x#
 
@@ -9,17 +9,26 @@ The Google API Client Library enables you to work with Google APIs such as Googl
 eZPublish integration is still in beta and is in parallel development with [[Google API](https://github.com/google/google-api-php-client)](https://github.com/google/google-api-php-client)
 
 ## Requirements ##
-* [PHP 5.2.1 or higher](http://www.php.net/)
+* [PHP 5.4.0 or higher](http://www.php.net/)
 * [PHP JSON extension](http://php.net/manual/en/book.json.php)
 
-## Developer Documentation for Google Api##
+## Developer Documentation ##
 http://developers.google.com/api-client-library/php
 
 ## Installation ##
 Enabled the extension in your site.ini
 
 ## Basic Example ##
-See the examples/ directory for examples of the key client features.
+See the examples/ directory for examples of the key client features. You can
+view them in your browser by running the php built-in web server.
+
+```
+$ php -S localhost:8000 -t examples/
+```
+
+And then browsing to the host and port you specified
+(in the above example, `http://localhost:8000`).
+
 ```PHP
 <?php
 $googleApiIni       = \eZINI::instance('googleapi.ini');
