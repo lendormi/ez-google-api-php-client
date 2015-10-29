@@ -6,7 +6,7 @@
  */
 
 namespace eZGoogleApi\Kernel;
-
+require_once 'extension/ezgoogleapi/lib/react/promise/src/functions_include.php';
 class eZGoogleApi
 {
     public function __construct($authenticationType, $params = array())
@@ -32,8 +32,16 @@ class eZGoogleApi
         }
     }
 
+    public function hasClient() {
+        if ($this->client) {
+            return true;
+        }
+        return false;
+    }
+
     public function getClient()
     {
+        return $this->client;
     }
 
     public static function accessoOAuthService($params)
@@ -42,33 +50,24 @@ class eZGoogleApi
 
         $clientID          = $googleApiIni->variable('GoogleAPISettings', 'OAuthServiceClientID');
         $emailAddress      = $googleApiIni->variable('GoogleAPISettings', 'OAuthServiceEmailAddress');
-        if ($googleApiIni->hasVariable('GoogleAPISettings', 'OAuthServiceP12Location') && $googleApiIni->variable('GoogleAPISettings', 'OAuthServiceP12Location')) {
-            $keyFile           = $googleApiIni->variable('GoogleAPISettings', 'OAuthServiceP12Location');
-        } elseif($googleApiIni->hasVariable('GoogleAPISettings', 'OAuthServiceJSONLocation') && $googleApiIni->variable('GoogleAPISettings', 'OAuthServiceJSONLocation')) {
+        $credentialsJson   = true;
+        if ($googleApiIni->hasVariable('GoogleAPISettings', 'OAuthServiceJSONLocation') && $googleApiIni->variable('GoogleAPISettings', 'OAuthServiceJSONLocation')) {
             $keyFile           = $googleApiIni->variable('GoogleAPISettings', 'OAuthServiceJSONLocation');
+        } elseif($googleApiIni->hasVariable('GoogleAPISettings', 'OAuthServiceP12Location') && $googleApiIni->variable('GoogleAPISettings', 'OAuthServiceP12Location')) {
+           \eZDebug::writeWarning( "P12s are deprecated in favor of service account JSON, which can be generated in the" );
+           \eZDebug::writeWarning( "Credentials section of Google Developer Console." );
+           return false;
         }
-        if(!isset($keyFile)) {
+        if(!isset($keyFile) || !file_exists($keyFile)) {
+            \eZDebug::writeError( "No Key Client Credentials" );
             return false;
         }
         $client            = new \Google_Client();
         $applicationName   = !empty($params['application_name']) ? $params['application_name'] : "Service Google Ezpublish";
         $scopes            = !empty($params['scopes']) ? $params['scopes'] : "";
-
+        $client->setAuthConfig($keyFile);
         $client->setApplicationName($applicationName);
-
-        // set assertion credentials
-        $client->setAssertionCredentials(
-            new \Google_Auth_AssertionCredentials(
-                $emailAddress,
-                array(
-                    $scopes
-                ),
-                file_get_contents($keyFile)
-            )
-        );
-
-        // other settings
-        $client->setClientId($clientID);
+        $client->setScopes($scopes);
         $client->setAccessType('offline_access');
         return $client;
     }
