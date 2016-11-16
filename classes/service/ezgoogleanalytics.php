@@ -247,7 +247,6 @@ class eZGoogleAnalytics extends eZGoogleService implements eZGoogleServiceInterf
                     $this->getOthersParameters()
                 )->getId();
                 break;
-            default:
             case eZGoogleAnalytics::MANAGEMENTUNSAMPLEDREPORTS:
                 /**
                  * @return object {@see Google_Service_Analytics_UnsampledReport}
